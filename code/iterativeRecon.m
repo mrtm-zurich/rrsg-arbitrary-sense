@@ -163,7 +163,7 @@ for nCoil=1:nCoils
         reconImage = mask.*b./I;
         if doVis
             plotIteration(reconImage, deltas, center, counter, ...
-                previousReconImage)
+                previousReconImage);
         end
         if saveIterSteps
             imagesIterSteps{counter+1} = reconImage(center,center);
