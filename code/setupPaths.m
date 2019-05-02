@@ -18,7 +18,7 @@ function paths = setupPaths()
 
 restoredefaultpath
 paths.code = fileparts(mfilename('fullpath'));
-paths.root = fullfile(paths.code, '.'); % no typo, same folder~
+paths.root = fullfile(paths.code, '..'); % parent folder of this one
 paths.data = fullfile(paths.root, 'data');
 paths.results = fullfile(paths.root, 'results');
 
