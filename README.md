@@ -58,6 +58,10 @@ Requirements
 
 This code is written in Matlab, R2018a, but most likely works with earlier or later versions.
 
+If you don't have a Matlab license, you can run this code online on
+CodeOcean.com (Compute Capsule, ISMRM 2019 RRSG Challenge: MRI Technology and
+Methods Lab, ETH Zurich, GitHub Submission)
+
 
 Results
 -------
