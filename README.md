@@ -24,8 +24,8 @@ insights of their cg-SENSE experience:
 
 - Franz Patzig
 - Lars Kasper
-- Maria Engel
 - Thomas Ulrich
+- Maria Engel
 - S. Johanna Vannesjo
 - Markus Weiger
 - David O. Brunner
