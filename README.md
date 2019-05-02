@@ -87,11 +87,11 @@ Figures
 -------
 
 ### Figure 4
-![Figure 4](results/Figure4_brain_logDeltaOverIterations.PNG?raw=true "Figure 4")
+![Figure 4](results/Figure4_brain_logDeltaOverIterations.png?raw=true "Figure 4")
 
 ### Figure 5
-![Figure 5, part 1](results/Figure5_brain_undersamplingRecon_part1.PNG?raw=true "Figure 5, part 1")
-![Figure 5, part 2](results/Figure5_brain_undersamplingRecon_part2.PNG?raw=true "Figure 5, part 2")
+![Figure 5, part 1](results/Figure5_brain_undersamplingRecon_part1.png?raw=true "Figure 5, part 1")
+![Figure 5, part 2](results/Figure5_brain_undersamplingRecon_part2.png?raw=true "Figure 5, part 2")
 
 ### Figure 6
-![Figure 6](results/Figure6_heart_undersamplingRecon.PNG?raw=true "Figure 6")
+![Figure 6](results/Figure6_heart_undersamplingRecon.png?raw=true "Figure 6")
