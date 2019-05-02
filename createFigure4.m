@@ -61,7 +61,7 @@ plot(log(deltas(:,5)), 'LineWidth', 2)
 xlim([1 length(deltas)-1])
 ylabel('$log_{10} \delta$', 'Interpreter', 'latex', 'FontSize', 16)
 xlabel('Iterations', 'Interpreter', 'latex', 'FontSize', 16)
-legend('R=2', 'R=3', 'R=4', 'R=5', 'Location', 'NorthEast', 'Interpreter', 'latex', 'FontSize', 14)
+legend({'R=2', 'R=3', 'R=4', 'R=5'}, 'Location', 'NorthEast', 'Interpreter', 'latex', 'FontSize', 14)
 box on
 print(fig4,[paths.results '/Figure4_' data.dataset '_logDeltaOverIterations'],'-djpeg')
 
