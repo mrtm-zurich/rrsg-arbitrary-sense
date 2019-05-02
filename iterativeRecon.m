@@ -126,10 +126,10 @@ if saveIterSteps
 end
 
 if calculateDelta
-    deltas = zeros(nIterations+1,1);
-    % reference.image = reference.image/max(max(abs(reference.image)));
-    reference.image = reference.image;
+    Deltas = zeros(nIterations+1,1);
 end
+
+deltas = zeros(nIterations+1,1);
 
 % Perform CG-SENSE algorithm
 for nCoil=1:nCoils
@@ -142,8 +142,7 @@ for nCoil=1:nCoils
     a = EH( signal(:,coilsSelect).*D(:,coilsSelect)*noiseCov, sens_os(:,:,coilsSelect), griddingOp)./I;
     
     if calculateDelta
-        % deltas(1) = norm(reshape( reference.mask.* ((a(center,center)/max(max(abs(a(center,center))))) - reference.image ),1,[]))./ norm(reshape(reference.mask.*reference.image, 1, []));
-        deltas(1) = norm(reshape( reference.mask.* ((a(center,center)) - reference.image ),1,[]))./ norm(reshape(reference.mask.*reference.image, 1, []));
+        Deltas(1) = norm(reshape( reference.mask.* ((a(center,center)) - reference.image ),1,[]))./ norm(reshape(reference.mask.*reference.image, 1, []));
     end
     
     recon_image = mask.*a./I;
@@ -154,7 +153,7 @@ for nCoil=1:nCoils
         imagesIterSteps{1} = a(center,center);
     end
     for counter = 1:nIterations
-        % delta = r(:)'*r(:)/(a(:)'*a(:));
+        deltas(counter) = r(:)'*r(:)/(a(:)'*a(:));
         q = EH( E(p./I , sens_os(:,:,coilsSelect), griddingOp).*D(:,coilsSelect)*noiseCov, sens_os(:,:,coilsSelect), griddingOp)./I;
         b = b + r(:)'*r(:)/(p(:)'*q(:))*p;
         r_new = r - r(:)'*r(:)/(p(:)'*q(:))*q;
@@ -171,8 +170,7 @@ for nCoil=1:nCoils
             imagesIterSteps{counter+1} = recon_image(center,center);
         end
         if calculateDelta
-            % deltas(counter+1) = norm(reshape( reference.mask.* ((recon_image(center,center)/max(max(abs(recon_image(center,center))))) - reference.image ),1,[]))./ norm(reshape(reference.mask.*reference.image, 1, []));
-            deltas(counter+1) = norm(reshape( reference.mask.* ((recon_image(center,center)) - reference.image ),1,[]))./ norm(reshape(reference.mask.*reference.image, 1, []));
+            Deltas(counter+1) = norm(reshape( reference.mask.* ((recon_image(center,center)) - reference.image ),1,[]))./ norm(reshape(reference.mask.*reference.image, 1, []));
         end
     end
     if getSCdata
@@ -181,6 +179,7 @@ for nCoil=1:nCoils
         break;
     end
 end
+deltas(nIterations+1) = r(:)'*r(:)/(a(:)'*a(:));
 
 %% Output
 if getSCdata
@@ -199,11 +198,12 @@ out.imageComb_full = imageComb;
 out.sens_os = sens_os;
 out.kspFilter = kspFilter;
 out.center = center;
+out.deltas = deltas;
 if saveIterSteps
     out.imagesIterSteps = imagesIterSteps;
 end
 if calculateDelta
-    out.deltas = deltas;
+    out.Deltas = Deltas;
 end
 
 end

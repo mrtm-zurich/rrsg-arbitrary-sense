@@ -30,7 +30,7 @@ properties.dokspaceApodization = 0; % Add additional k-space apodization? (used 
 data.sense = getSenseMap(paths, properties, doLoadSenseMap, data);
 
 %% Create Figure 4 (brain data)
-deltas = createFigure4(data, paths);
+[Deltas,deltas] = createFigure4(data, paths);
 
 %% Create Figure 5 (brain data)
 createFigure5(data, paths);

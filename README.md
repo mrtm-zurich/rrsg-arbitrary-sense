@@ -71,8 +71,8 @@ In order to address the goals of the submission, we provide the following result
 	> Magnetic Resonance in Medicine, vol. 43, no. 5, pp. 682–690, May 2000.
 	- Only the central, fully sampled part of the provided radial data (about 60 samples of each spoke for the brain data) were utilized for this computation. For the heart dataset all samples were used to calculate the SENSE maps.
 2. The figure reproducing reconstruction errors of R=2,3,4,5 undersampled brain data is provided in `results/Figure4_brain_logDeltaOverIterations.jpg`
-    - Note that we only provide a plot for the lower-case delta here (Eq. (28) of [1]), because upper-case delta, i.e., the relative deviation from the exact
-	solution cannot be computed in the absence of a ground truth for the imaged object. 
+    - Note that the upper-case delta, i.e., the relative deviation from the exact solution, cannot be computed in the absence of a ground truth for the imaged object. Therefore, we 
+	reconstructed an image with R=1 and picked it as the ground truth for calculating the reconstruction error for R>2. 
 3. Reconstruction results for R=1,2,3,4 undersampled brain data are stored in two jpg files for better readability, `results/Figure5_brain_undersamplingRecon_part{1,2}.jpg`
 4. Reconstructions of the provided cardiac data using the first 11,22,33,44,55 spokes (R=5,4,3,2,1 respectively) are provided in `results/Figure6_heart_undersamplingRecon.jpg`.
 

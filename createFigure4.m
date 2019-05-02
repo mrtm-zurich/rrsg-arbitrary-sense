@@ -1,4 +1,4 @@
-function deltas = createFigure4(data, paths)
+function [Deltas, deltas]= createFigure4(data, paths)
 
 % This function creates Figure 4 of the original paper (log(delta) over
 % number of iterations). It first sets properties that are held constant for
@@ -37,6 +37,7 @@ reference.mask = mask_tmp;
 R = [1, 2, 3, 4, 5];
 properties.nIterations = 30;
 deltas = zeros(properties.nIterations+1, length(R));
+Deltas = zeros(properties.nIterations+1, length(R));
 for ic1=1:length(R)
     disp(['Reconstruct image with R = ' num2str(R(ic1)) '. (' num2str(ic1) '/' num2str(length(R)) ')']);
     properties.R = R(ic1);
@@ -47,22 +48,34 @@ for ic1=1:length(R)
     
     out_tmp = iterativeRecon(data, properties, reference);
     deltas(:,ic1) = out_tmp.deltas;
+    Deltas(:,ic1) = out_tmp.Deltas;
 end
+
+nIterations = size(Deltas,1)-1;
 
 % Plot the results and save the figure in results subfolder
 % We decided to not plot the error for R=1
 fig4 = figure;
-hold on
-% plot(log(deltas(:,1)), 'LineWidth', 2)
-plot(log(deltas(:,2)), 'LineWidth', 2)
-plot(log(deltas(:,3)), 'LineWidth', 2)
-plot(log(deltas(:,4)), 'LineWidth', 2)
-plot(log(deltas(:,5)), 'LineWidth', 2)
-xlim([1 length(deltas)-1])
-ylabel('$log_{10} \delta$', 'Interpreter', 'latex', 'FontSize', 16)
+subplot(1,2,1);
+l1 = plot(0:nIterations,log10(Deltas(:,2:5)), 'LineWidth', 2);
+xlim([0 nIterations])
+ylabel('$\log_{10} \Delta_{approx}$', 'Interpreter', 'latex', 'FontSize', 16)
 xlabel('Iterations', 'Interpreter', 'latex', 'FontSize', 16)
 legend({'R=2', 'R=3', 'R=4', 'R=5'}, 'Location', 'NorthEast', 'Interpreter', 'latex', 'FontSize', 14)
 box on
+
+subplot(1,2,2);
+l2 = plot(0:nIterations,log10(deltas(:,1:5)), 'LineWidth', 2);
+xlim([0 nIterations])
+ylabel('$\log_{10} \delta$', 'Interpreter', 'latex', 'FontSize', 16)
+xlabel('Iterations', 'Interpreter', 'latex', 'FontSize', 16)
+legend({'R=1', 'R=2', 'R=3', 'R=4', 'R=5'}, 'Location', 'NorthEast', 'Interpreter', 'latex', 'FontSize', 14)
+box on
+
+% Make sure that same R-factors have same line color in both plots
+colors = get(l2,{'Color'});
+set(l1,{'Color'},colors(2:5));
+
 print(fig4,[paths.results '/Figure4_' data.dataset '_logDeltaOverIterations'],'-djpeg')
 
 end
