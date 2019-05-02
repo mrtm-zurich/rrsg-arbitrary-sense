@@ -29,26 +29,30 @@ data.sense = getSenseMap(paths, properties, doLoadSenseMap, data);
  
 %% Reconstruct Images
 % -- R=1
+
+nIt = 8;
 properties.doSense = 1;
-properties.R = 2;
-properties.nIterations = 8;
+properties.R = 1;
+properties.nIterations = nIt;
 properties.saveIterSteps = 1;
 properties.doNoiseCov = 1;
 properties.doVis = 1;
 
 out = iterativeRecon(data, properties);
 
-h1 = figure('Name', 'R=1');
-subplot(1,3,1); imagesc(rot90(abs(out.imagesIterSteps{1}),2)); colormap(gray); axis image; axis off; title('0th iteration');
-subplot(1,3,2); imagesc(rot90(abs(out.imagesIterSteps{5}),2)); colormap(gray); axis image; axis off; title('2nd iteration');
-subplot(1,3,3); imagesc(rot90(abs(out.imagesIterSteps{9}),2)); colormap(gray); axis image; axis off; title('4th iteration');
+nItHalf = round(nIt/2);
+fh = figure('Name', 'demoRecon: Iteration Results');
+subplot(2,3,1); imagesc(rot90(abs(out.imagesIterSteps{1}),2)); colormap(gray); axis image; ylabel('R=1'); title('iteration 0');
+subplot(2,3,2); imagesc(rot90(abs(out.imagesIterSteps{nItHalf}),2)); colormap(gray); axis image; axis off; title(sprintf('iteration %d', nItHalf));
+subplot(2,3,3); imagesc(rot90(abs(out.imagesIterSteps{nIt}),2)); colormap(gray); axis image; axis off; title(sprintf('iteration %d', nIt));
 
 % -- R=2
 properties.R = 2;
-properties.nIterations = 8;
+properties.nIterations = nIt;
 out = iterativeRecon(data, properties);
 
-h2 = figure('Name', 'R=2');
-subplot(1,3,1); imagesc(rot90(abs(out.imagesIterSteps{1}),2)); colormap(gray); axis image; axis off; title('0th iteration');
-subplot(1,3,2); imagesc(rot90(abs(out.imagesIterSteps{5}),2)); colormap(gray); axis image; axis off; title('4nd iteration');
-subplot(1,3,3); imagesc(rot90(abs(out.imagesIterSteps{9}),2)); colormap(gray); axis image; axis off; title('8th iteration');
+nItHalf = round(nIt/2);
+figure(fh);
+subplot(2,3,4); imagesc(rot90(abs(out.imagesIterSteps{1}),2)); colormap(gray); axis image; ylabel('R=2'); title('iteration 0');
+subplot(2,3,5); imagesc(rot90(abs(out.imagesIterSteps{round(nItHalf)}),2)); colormap(gray); axis image; axis off;  title(sprintf('iteration %d', nItHalf));
+subplot(2,3,6); imagesc(rot90(abs(out.imagesIterSteps{nIt}),2)); colormap(gray); axis image; axis off;  title(sprintf('iteration %d', nIt));

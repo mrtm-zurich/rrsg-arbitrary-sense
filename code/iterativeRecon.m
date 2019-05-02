@@ -145,7 +145,7 @@ for nCoil=1:nCoils
         Deltas(1) = norm(reshape( reference.mask.* ((a(center,center)) - reference.image ),1,[]))./ norm(reshape(reference.mask.*reference.image, 1, []));
     end
     
-    recon_image = mask.*a./I;
+    reconImage = mask.*a./I;
     b = zeros([N N]);
     p = a;
     r = a;
@@ -159,22 +159,21 @@ for nCoil=1:nCoils
         r_new = r - r(:)'*r(:)/(p(:)'*q(:))*q;
         p = r_new + r_new(:)'*r_new(:)/(r(:)'*r(:))*p;
         r = r_new;
-        recon_image = mask.*b./I;
+        previousReconImage = reconImage; % for difference plots
+        reconImage = mask.*b./I;
         if doVis
-            figure(100);imagesc(abs(recon_image(center,center))); axis image; colorbar;
-            title(['reconstructed image; iteration ' num2str(counter)]); colormap(gray(256));
-            drawnow;
-            %pause(0.5);
+            plotIteration(reconImage, deltas, center, counter, ...
+                previousReconImage)
         end
         if saveIterSteps
-            imagesIterSteps{counter+1} = recon_image(center,center);
+            imagesIterSteps{counter+1} = reconImage(center,center);
         end
         if calculateDelta
-            Deltas(counter+1) = norm(reshape( reference.mask.* ((recon_image(center,center)) - reference.image ),1,[]))./ norm(reshape(reference.mask.*reference.image, 1, []));
+            Deltas(counter+1) = norm(reshape( reference.mask.* ((reconImage(center,center)) - reference.image ),1,[]))./ norm(reshape(reference.mask.*reference.image, 1, []));
         end
     end
     if getSCdata
-        imagesSC(:,:,nCoil) = recon_image;
+        imagesSC(:,:,nCoil) = reconImage;
     else
         break;
     end
@@ -189,7 +188,7 @@ if getSCdata
     end
 else
     imagesSC = 'not available for combined recon';
-    imageComb = recon_image;
+    imageComb = reconImage;
 end
 
 out.imagesSC = imagesSC;
