@@ -89,5 +89,5 @@ end
 %% save figure
 for iPart = 1:2
     print(fh(iPart),[paths.results '/Figure5_' data.dataset '_undersamplingRecon_part' ...
-        num2str(iPart)],'-djpeg')
+        num2str(iPart)],'-dpng')
 end

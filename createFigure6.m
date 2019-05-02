@@ -60,6 +60,6 @@ for ic1 = 1:5
     spokes = [11 22 33 44 55];
     subplot(1,5,ic1); imagesc(abs(cardioImages(:,:,ic1))); title([num2str(spokes(ic1)) ' spokes']); colormap(gray); axis image; axis off;
 end
-print(fig6,[paths.results '/Figure6_' data.dataset '_undersamplingRecon'],'-djpeg')
+print(fig6,[paths.results '/Figure6_' data.dataset '_undersamplingRecon'],'-dpng')
 
 end

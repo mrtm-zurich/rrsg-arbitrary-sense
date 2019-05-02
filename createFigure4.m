@@ -76,6 +76,6 @@ box on
 colors = get(l2,{'Color'});
 set(l1,{'Color'},colors(2:5));
 
-print(fig4,[paths.results '/Figure4_' data.dataset '_logDeltaOverIterations'],'-djpeg')
+print(fig4,[paths.results '/Figure4_' data.dataset '_logDeltaOverIterations'],'-dpng')
 
 end
