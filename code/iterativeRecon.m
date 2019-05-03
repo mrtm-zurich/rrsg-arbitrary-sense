@@ -49,6 +49,10 @@ saveIterSteps = properties.saveIterSteps;
 doNoiseCov = properties.doNoiseCov;
 calculateDelta = properties.calculateDelta;
 dokspaceApodization = properties.dokspaceApodization;
+% computation method for kspace filter
+% 'gridding' - gridding of 1s on trajectory (for arbitrary traj)
+% 'disk'     - use circular disk (only useful for radials/spirals)
+kSpaceFilterMethod = 'gridding'; 
 
 %% Adjust signal and k according to SENSE factor
 if length(R) == 1
@@ -92,15 +96,20 @@ for coil = 1:size(sens_os,3)
 end
 
 % -- k-space filter
-% From k-space mask -- version 1
-% kspFilter = ones(size(griddingOp.H'*signal(:,1)));
-% kspFilter(griddingOp.H'*signal(:,1) == 0) = 0;
-% griddingOp.kspFilter = kspFilter;
 
-% Simply circular -- version 2
-[xx, yy] = meshgrid(linspace(-N/2,N/2,N), linspace(-N/2,N/2,N));
-kspFilter = zeros(N,N);
-kspFilter(xx.^2 + yy.^2 < (N/2)^2) = 1;
+switch lower(kSpaceFilterMethod)
+    case 'gridding'
+        % From k-space mask -- version 1
+        kspFilter = ones(size(griddingOp.H'*signal(:,1)));
+        kspFilter(griddingOp.H'*signal(:,1) == 0) = 0;
+        % griddingOp.kspFilter = kspFilter;
+    case 'disk'
+        % Simply circular -- version 2
+        [xx, yy] = meshgrid(linspace(-N/2,N/2,N), linspace(-N/2,N/2,N));
+        kspFilter = zeros(N,N);
+        kspFilter(xx.^2 + yy.^2 < (N/2)^2) = 1;
+end
+
 griddingOp.kspFilter = reshape(kspFilter, [], 1);
 
 if dokspaceApodization
