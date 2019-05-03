@@ -67,7 +67,7 @@ k = reshape(k, size(k,1)*size(k,2), size(k,3));
 
 %% Set up Gridding
 N = os*Nimg;  % Grid size including oversampling
-griddingOp = prepare_gridding_operator(k', os, width, N);
+griddingOp = prepareGriddingOperator(k', os, width, N);
 center = N/2-Nimg/2+1:N/2+Nimg/2;
 
 %% SENSE Map

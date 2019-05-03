@@ -1,4 +1,4 @@
-function [ griddingOp ] = prepare_gridding_operator(k, os, width, N)
+function [ griddingOp ] = prepareGriddingOperator(k, os, width, N)
 % Prepare the gradient operator
 % Input:
 % os:    (scalar) oversampling factor

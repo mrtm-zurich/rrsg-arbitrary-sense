@@ -30,7 +30,7 @@ data.sense = getSenseMap(paths, properties, doLoadSenseMap, data);
 %% Reconstruct Images
 % -- R=1
 
-nIt = 8;
+nIt = 100;
 properties.doSense = 1;
 properties.R = 1;
 properties.nIterations = nIt;
@@ -46,7 +46,7 @@ subplot(2,3,1); imagesc(rot90(abs(out.imagesIterSteps{1}),2)); colormap(gray); a
 subplot(2,3,2); imagesc(rot90(abs(out.imagesIterSteps{nItHalf}),2)); colormap(gray); axis image; axis off; title(sprintf('iteration %d', nItHalf));
 subplot(2,3,3); imagesc(rot90(abs(out.imagesIterSteps{nIt}),2)); colormap(gray); axis image; axis off; title(sprintf('iteration %d', nIt));
 
-% -- R=2
+%% -- R=2
 properties.R = 2;
 properties.nIterations = nIt;
 out = iterativeRecon(data, properties);

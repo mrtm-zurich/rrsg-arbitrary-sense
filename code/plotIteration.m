@@ -26,7 +26,7 @@ imagesc(abs(I).^0.1); axis image; colorbar; colormap(gray(256));
 title('magnitude^{0.1}');
 
 subplot(2,3,5);
-imagesc(log(abs(TransformImageToKspace(I)))); axis image; colorbar; colormap(gray(256));
+imagesc(log(abs(transformImageToKspace(I)))); axis image; colorbar; colormap(gray(256));
 title('k-space (log(abs))');
 
 subplot(2,3,3);
