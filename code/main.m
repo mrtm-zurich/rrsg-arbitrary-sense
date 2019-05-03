@@ -28,7 +28,7 @@ properties.dokspaceApodization = 0; % Add additional k-space apodization? (used 
 % computation method for kspace filter
 % 'gridding' - gridding of 1s on trajectory (for arbitrary traj) & mask
 % 'disk'     - use circular disk (only useful for radials/spirals)
-properties.kSpaceFilterMethod = 'disk'; 
+properties.kSpaceFilterMethod = 'gridding'; 
 
 %% Calculate or load SENSE map
 data.sense = getSenseMap(paths, properties, doLoadSenseMap, data);

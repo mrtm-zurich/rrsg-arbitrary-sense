@@ -197,6 +197,10 @@ else
     imageComb = reconImage;
 end
 
+% final application of k-space filter
+imageComb = transformKspaceToImage(transformImageToKspace(imageComb).*...
+    reshape(kspFilter, [N,N]));
+
 out.imagesSC = imagesSC;
 out.imageComb = imageComb(center,center);
 out.imageComb_full = imageComb;

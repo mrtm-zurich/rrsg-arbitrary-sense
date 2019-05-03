@@ -16,6 +16,7 @@ properties.doNoiseCov = 1;
 properties.getSCdata = 0;
 properties.calculateDelta = 0;
 properties.dokspaceApodization = 0;
+properties.kSpaceFilterMethod = 'gridding'; 
 properties.doSense = 1;
 cardioImages = zeros(properties.Nimg, properties.Nimg, 5);
 

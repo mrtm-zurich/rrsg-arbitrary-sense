@@ -34,6 +34,7 @@ end
 
 properties.calculateDelta = 0;
 properties.dokspaceApodization = 0;
+properties.kSpaceFilterMethod = 'gridding'; 
 properties.Nimg = data.Nimg;        % For the phantom it should be 152, 340 for brain, 360 for heart
 properties.R = R;                   % Undersampling factor (positive integer)
 properties.gridding.os = 2;         % Gridding oversampling factor

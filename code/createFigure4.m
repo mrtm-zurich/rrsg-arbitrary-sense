@@ -24,6 +24,7 @@ properties.dokspaceApodization = 0;
 properties.doSense = 1;
 properties.R = 1;
 properties.nIterations = 5;
+properties.kSpaceFilterMethod = 'gridding'; 
 
 out = iterativeRecon(data, properties);
 reference.image = out.imageComb;

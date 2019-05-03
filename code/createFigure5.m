@@ -36,7 +36,7 @@ end
 
 %% Create Subplots for figure
 bestIteration = [4 7 10 12];
-intensityMaxPerColumn = [8e-19, 1.1e-6, 2.5e-7];
+intensityMaxPerColumn = [2e-15, 1.1e-6, 2.5e-7];
 for iR = 1:nR
     R = RArray(iR);
     
