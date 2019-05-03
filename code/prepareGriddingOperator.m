@@ -6,7 +6,7 @@ function [ griddingOp ] = prepareGriddingOperator(k, os, width, N)
 % N:     (scalar) size of oversampled grid
 
     % Set kernel attributes
-    ns    = 10000;  % Nr of samples for Kernelcalucalation.
+    ns    = 10000;  % Nr of samples for Kernel-calculation.
     beta  = pi*sqrt(width^2/os^2*(os-0.5)^2-0.8);	% beta by Beatty et al.
     vals  = kaiser(2*ns,beta);  vals(1:ns) = [];
 

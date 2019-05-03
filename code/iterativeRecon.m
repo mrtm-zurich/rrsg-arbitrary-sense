@@ -49,10 +49,7 @@ saveIterSteps = properties.saveIterSteps;
 doNoiseCov = properties.doNoiseCov;
 calculateDelta = properties.calculateDelta;
 dokspaceApodization = properties.dokspaceApodization;
-% computation method for kspace filter
-% 'gridding' - gridding of 1s on trajectory (for arbitrary traj)
-% 'disk'     - use circular disk (only useful for radials/spirals)
-kSpaceFilterMethod = 'gridding'; 
+kSpaceFilterMethod = properties.kSpaceFilterMethod;
 
 %% Adjust signal and k according to SENSE factor
 if length(R) == 1

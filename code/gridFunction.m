@@ -8,7 +8,7 @@ function OUT = gridFunction(IN,Traj,N,kernel,adjoint);
 % 
 % Forward Gridding: adjoint = true
 % Grids Non-Cartesian data onto a NxN Cartesian grid (adjoint operation:
-% default)via convolution gridding 
+% default) via convolution gridding 
 % Density Compensation and Apodization correction are not considered.
 % 
 % INPUT: IN                 Non-Cartesian k-space data (nSamples)(adjoint operation)

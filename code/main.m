@@ -25,6 +25,10 @@ properties.saveIterSteps = 0;       % Store images from all CG iterations?
 properties.doNoiseCov = 1;          % Use noise covariance matrix?
 properties.calculateDelta = 0;      % Calculate delta (normed difference of each iteration step to reference)?
 properties.dokspaceApodization = 0; % Add additional k-space apodization? (used for SENSE map creation)
+% computation method for kspace filter
+% 'gridding' - gridding of 1s on trajectory (for arbitrary traj) & mask
+% 'disk'     - use circular disk (only useful for radials/spirals)
+properties.kSpaceFilterMethod = 'disk'; 
 
 %% Calculate or load SENSE map
 data.sense = getSenseMap(paths, properties, doLoadSenseMap, data);
