@@ -40,6 +40,10 @@ External Code used (from Educational Session ESMRMB):
 Getting Started
 ---------------
 
+We provide two ways of evaluating our results, depending on whether you have 
+access to Matlab environment on your system:
+
+### Matlab
 1. Clone this repository into a project folder of your liking, e.g. via
    `git clone https://github.com/mrtm-zurich/rrsg-arbitrary-sense.git rrsg-arbitrary-sense`
    - Note: The `data` subfolder of the repo already contains the example data from 
@@ -52,15 +56,21 @@ Getting Started
    for one undersampling factor), run `demoRecon.m` instead of `main.m` in the
    `code` subfolder of the repository.
 
+### Other
+If you don't have a Matlab license, you can run this code online on
+https://CodeOcean.com as a Compute Capsule with its own DOI:
+
+[ISMRM 2019 RRSG Challenge: MRI Technology and Methods Lab, ETH Zurich, GitHub Submission](https://dx.doi.org/10.24433/CO.5840424.v1)
+
+1. Explore the published results on the right tab from a verified run of the code.
+2. Press Re-Run to see results unfold for yourself
+    - you might have to sign up to CodeOcean to do so
+
 
 Requirements
 ------------
 
 This code is written in Matlab, R2018a, but most likely works with earlier or later versions.
-
-If you don't have a Matlab license, you can run this code online on
-https://CodeOcean.com as a Compute Capsule:
-[ISMRM 2019 RRSG Challenge: MRI Technology and Methods Lab, ETH Zurich, GitHub Submission](https://codeocean.com/capsule/01967e31-82f3-4d6e-af5b-552c659d4c8a/)
 
 
 Results
